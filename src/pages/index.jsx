@@ -2,12 +2,11 @@ import Link from "next/link";
 import React from "react";
 import styles from "./index.module.scss";
 import { Card, Col, Row, Button, Text } from "@nextui-org/react";
+
 function Home({ data }) {
   console.log(data);
   return (
     <div className="">
-      <h1>Hello world</h1>
-      <br />
       <div className={styles.animes}>
         {data.data.map((anime) => (
           <Link href={`/all/${anime.mal_id}`}>
@@ -46,24 +45,9 @@ function Home({ data }) {
               >
                 <Row>
                   <Col>
-                   
-                    <Text color="#000" size={12}>
+                    <Text color="#000" size={14}>
                       {anime.title}
                     </Text>
-                  </Col>
-                  <Col>
-                    <Row justify="flex-end">
-                      <Button flat auto rounded color="secondary">
-                        <Text
-                          css={{ color: "inherit" }}
-                          size={12}
-                          weight="bold"
-                          transform="uppercase"
-                        >
-                          more 
-                        </Text>
-                      </Button>
-                    </Row>
                   </Col>
                 </Row>
               </Card.Footer>
@@ -86,5 +70,4 @@ export let getServerSideProps = async () => {
     props: { data },
   };
 };
-
 export default Home;
