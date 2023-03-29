@@ -4,6 +4,7 @@ import styles from "../../styles/datailed.module.scss";
 import { useRouter } from "next/router";
 export default function singleAnime({ data }) {
   const { query } = useRouter();
+  console.log(query);
   const anime = data?.data?.find((item) => item.mal_id == query.id);
   return (
     <div className={styles.Main}>
