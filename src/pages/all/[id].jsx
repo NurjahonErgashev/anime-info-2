@@ -68,7 +68,7 @@ export default function singleAnime({ data }) {
             )}
           </div>
           <div className={styles.item3}>
-            <h1>similar</h1>
+            <h1>ismilar</h1>
 
             <Grid.Container gap={2} justify="flex-start">
               {animes.map((item, index) => (
