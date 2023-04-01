@@ -2,13 +2,12 @@ import Link from "next/link";
 import React from "react";
 import styles from "./index.module.scss";
 import { Card, Col, Row, Button, Text } from "@nextui-org/react";
-
-function Home({ data }) {
-  console.log(data);
+import { api } from "./api/allapi";
+function Home() {
   return (
     <div className="">
       <div className={styles.animes}>
-        {data.data.map((anime) => (
+        {api?.data?.map((anime,index) => index <= 25 && (
           <Link href={`/all/${anime.mal_id}`}>
             <Card css={{ w: "100%", h: "400px" }}>
               <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
