@@ -14,9 +14,14 @@
         
     }
     .pagination{
-        position: fixed;
-        right: 30%;
-        bottom: 10px;
+      position: fixed;
+      right: 30%;
+      bottom: 10px;
+
+      button {
+        background-color: #0d1017;
+        color: white;   
+      }
     }
   }
 }
