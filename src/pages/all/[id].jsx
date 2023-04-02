@@ -45,7 +45,7 @@ export default function singleAnime({ data }) {
           </div>
           <div className={styles.item2}>
             <div>
-              <img src={anime.images.jpg.large_image_url}></img>
+              <img src={anime?.images?.jpg?.large_image_url}></img>
             </div>
           </div>
         </div>

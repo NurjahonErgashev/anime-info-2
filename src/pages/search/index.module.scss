@@ -1,0 +1,12 @@
+.animes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.input {
+  color: white;
+  label {
+    background-color: rgb(61, 61, 61);
+  }
+}

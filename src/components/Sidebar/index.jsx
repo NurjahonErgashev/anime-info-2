@@ -30,9 +30,11 @@ function Sidebar() {
       <div className={styles.menu}>
         <ul>
           {routes.map((link) => (
-            <li className={route == link.path && styles.activeLink}>
-              <Link href={link.path}>{link.name}</Link>
-            </li>
+            <Link href={link.path}>
+              <li className={route == link.path && styles.activeLink}>
+                {link.name}
+              </li>
+            </Link>
           ))}
         </ul>
       </div>

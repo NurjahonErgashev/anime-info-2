@@ -8,7 +8,7 @@ function Home({ data }) {
   return (
     <div className="">
       <div className={styles.animes}>
-        {data.data.map((anime) => (
+        {data?.data?.map((anime) => (
           <Link href={`/all/${anime.mal_id}`}>
             <Card css={{ w: "100%", h: "400px" }}>
               <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
@@ -63,11 +63,11 @@ function Home({ data }) {
 }
 
 export let getServerSideProps = async () => {
-  let res = await fetch("https://api.jikan.moe/v4/anime?limit=10000");
+  let res = await fetch("https://api.jikan.moe/v4/anime?page=1&limit=10000");
   let data = await res.json();
 
   return {
-    props: { data },
+    props: { data: data },
   };
 };
 export default Home;
