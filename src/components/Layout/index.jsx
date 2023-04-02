@@ -2,7 +2,6 @@ import React from "react";
 import Header from "../Header";
 import Sidebar from "../Sidebar";
 import styles from "./index.module.scss";
-
 function Layout({ children }) {
   return (
     <div className={styles.layout}>

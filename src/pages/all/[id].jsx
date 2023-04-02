@@ -3,17 +3,28 @@
 import styles from "../../styles/datailed.module.scss";
 import { useRouter } from "next/router";
 import { Rating } from "@mui/material";
-import { useState } from "react";
 import { Card, Grid, Row, Text } from "@nextui-org/react";
-export default function singleAnime({ data }) {
-  const { query } = useRouter();
-  const anime = data?.data?.find((item) => item.mal_id == query.id);
-  const animes = data?.data?.filter(
-    (item, index) => anime?.genres?.[index + 1]
-  );
-  console.log(anime?.trailer);
+import { api } from "../api/allapi";
+export default function singleAnime() {
+  const { query, push } = useRouter();
+  const anime = api?.data?.find((item) => item.mal_id == query.id);
+  // const animes = data?.data?.filter((item, index) =>
+  //   anime?.themes?.filter((i) => i.mal_id == item.mal_id)
+  // );
+  let animes = [];
+  let m = api?.data;
+  let s = anime?.themes;
+  for (let i = 0; i < m?.length; i++) {
+    for (let j = 0; j < s?.length; j++) {
+      if (m[i]?.mal_id == s[j]?.mal_id) {
+        animes.push(m[i]);
+      }
+    }
+  }
+  console.log(animes);
   return (
     <div className={styles.Main}>
+      
       <div className={styles.container}>
         <div className={styles.child1}>
           <div className={styles.item1}>
@@ -68,11 +79,22 @@ export default function singleAnime({ data }) {
             )}
           </div>
           <div className={styles.item3}>
-            <h1>ismilar</h1>
+            <h1
+              style={{
+                fontSize: "35px",
+              }}
+            >
+              {animes.length ? "similar" : ""}
+            </h1>
 
             <Grid.Container gap={2} justify="flex-start">
               {animes.map((item, index) => (
-                <Grid xs={6} sm={3} key={index}>
+                <Grid
+                  onClick={() => push(`./${item.mal_id}`)}
+                  xs={6}
+                  sm={3}
+                  key={index}
+                >
                   <Card isPressable>
                     <Card.Body css={{ p: 0 }}>
                       <Card.Image
