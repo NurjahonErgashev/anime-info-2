@@ -2,36 +2,29 @@ import { Button, Card, Input, Text } from "@nextui-org/react";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
 import styles from "./index.module.scss";
+import { api } from "../api/allapi";
 
 function Search({ defData }) {
   let input = useRef();
-  let [data, setData] = useState(defData.data);
+  let [data, setData] = useState(api?.data.slice(0, 50));
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-
-    console.log(input.current.value);
-    if (input.current.value != "") {
-      let res = await fetch(
-        `https://api.jikan.moe/v4/anime?q=${input.current.value}&limit=10000`
-      );
-      let data = await res.json();
-      setData(data.data);
-    }
+    let myData = api.data.filter((anime) =>
+      anime.title.toLowerCase().includes(input.current.value.toLowerCase())
+    );
+    console.log(api.data);
+    setData(myData);
   }
   return (
     <div>
       <form onSubmit={handleSubmit} className="flex gap-x-4">
         <Input
-          // css={{
-          //   color: "",
-          // }}
           shadow
           ref={input}
           type="text"
           name="serachText"
           status="error"
-          // className={styles.input}
         />
         <Button
           color={"success"}
@@ -47,7 +40,7 @@ function Search({ defData }) {
       </form>
       <br />
       <div className={styles.animes}>
-        {data?.data?.map((anime) => (
+        {data?.map((anime) => (
           <Link href={`/all/${anime.mal_id}`}>
             <Card
               title={anime.title}
