@@ -75,7 +75,12 @@ function All() {
           ))}
         </div>
         <div className={styles.pagination}>
-          <Pagination onChange={cap} total={10} initialPage={1} />
+          <Pagination
+            onChange={cap}
+            total={9}
+            initialPage={1}
+            color="gradient"
+          />
         </div>
       </div>
     </div>
